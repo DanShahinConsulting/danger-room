@@ -1,0 +1,11 @@
+.grayscale {
+    display:none;
+}
+/* [class="grayscale"]:checked ~  .overlay { filter: grayscale(1); } */
+[class="grayscale"]:checked ~  .background { filter: grayscale(1) }
+/* [class="grayscale"]:checked ~  .covers { filter: grayscale(1)  } */
+
+
+/* [class="b-backgroundlur"]:checked ~  .overlay { filter: b-backgroundlur(5px); } */
+[class="blur-background"]:checked ~  .background { filter: blur(10px)}
+/* [class="b-backgroundlur"]:checked ~  .covers { filter: b-backgroundlur(5px)  } */

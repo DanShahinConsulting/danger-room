@@ -1,0 +1,55 @@
+.toast {
+    font-size: 8vw;
+    background-image: none !important;
+    font-family: Arial, Helvetica, sans-serif;
+    /*Removes Pesky Default Toast Icon*/
+    /* padding: 15px 15px 15px 15px !important; */
+    /*Corrects Spacing for default icon*/
+    /* text-align: center; */
+}
+
+#toast-container {
+    z-index: 101;
+}
+
+#toast-container>.toast {
+    background-image: none !important;
+
+}
+
+#toast-container>.toast:before {
+    position: relative;
+    font-family: FontAwesome;
+    font-size: 10vw;
+    line-height: 8vw;
+    float: left;
+    color: #FFF;
+    padding-top: 0.15em;
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+
+}
+
+#toast-container>.toast-warning:before {
+    content: "\f0e7";
+    color: yellow;
+}
+
+#toast-container>.toast-error:before {
+    content: "\f0e7";
+    color: yellow;
+}
+
+#toast-container>.toast-info:before {
+    content: "\f0e7";
+    color: yellow;
+}
+
+#toast-container>.toast-success:before {
+    content: "\f0e7";
+    color: yellow;
+}
+
+#toast-container>div {
+    opacity: 1;
+}

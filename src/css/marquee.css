@@ -1,0 +1,54 @@
+.marquee {
+    background-color: #000000;
+    color: #fff;
+    padding: 2px;
+    z-index: 100;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width: 100vw;
+    white-space: nowrap;
+
+    /* font-family: 'Permanent Marker', cursive; */
+    /* font-family: 'Press Start 2P', cursive; */
+    font-family: 'Bungee Inline', cursive;
+  }
+.marquee  p {
+    animation: marquee 15s linear infinite;
+    font-size: 5.0vh;
+    word-wrap: normal;
+    width:fit-content;
+    margin: 2px;
+}
+
+.marquee p:hover {
+    animation-play-state: paused;
+  }
+  @-moz-keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @-webkit-keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes marquee {
+    0% {
+      -moz-transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%)
+    }
+    100% {
+      -moz-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }

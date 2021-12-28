@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>virtualset</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/three.js" ></script>
+        <script src="js/dat.gui.js" ></script>
+        <script src="js/GLTFLoader.js"></script>
+        <script src="js/FlyControls.js"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/Lensflare.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossorigin="anonymous" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Permanent+Marker&family=Press+Start+2P&display=swap" rel="stylesheet">
+            
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+        <link rel="stylesheet" href="css/stage.css">
+        <link rel="stylesheet" href="css/fx.css">
+        <link rel="stylesheet" href="css/marquee.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+            integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="css/toastr.css">
+        <script src="https://kit.fontawesome.com/e6a19b27a4.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous"></script>
+            <script>
+                videoPaused = true;
+                window.dosomething = function dosomething(msg) {
+                    alert(msg);
+                }
+                window.toastMessage = function(message, toastType) {
+                    toastType = toastType || 'info';
+                    toastr[toastType](`${message}`);
+                }
+                window.toggle = function(selector, className){
+                    $(selector).toggleClass(className);
+                }
+
+                window.wobble = function(selector,className){
+                    console.log({selector,className})
+                    let $bg = $(selector);
+                    $bg.addClass(className);
+                }
+
+                stopWobble = function(){
+                    $('.background').removeClass('animate__infinite').removeClass('infinite');
+                }
+
+                window.toggleClass = function(selector,className){
+                    $(selector).toggleClass(className)
+                }
+
+                window.toggleThreedee = function(){
+                    $('.threedee').toggle();
+                }
+
+                window.showImage = function(imgData){
+                    return new Promise((resolve, reject) => {
+                        let $cv = $('.covers');
+                        $('.covers').css({'background-image':`url(${imgData})`});
+                        $('.covers>img').attr({'src':`${imgData}`});
+                        resolve('resolveImage');
+                    });
+                }
+
+                window.showOverlay = function(imgData){
+                    return new Promise((resolve, reject) => {
+                        let $ol = $('.overlay');
+                        $('.overlay>img').attr({'src':`${imgData}`});
+                        resolve('resolved overlay');
+                    });
+                }
+
+                window.showBackground = function(imgData){
+                    let $bg = $('.background');
+                    if($bg.hasClass('hidden')){
+                        $bg.removeClass('hidden');
+                    }
+                    $bg.css({'background-image':`url(${imgData})`});
+                }
+
+                window.playVideo = function(){
+                    $('.videoInsert')[0].play();
+                }
+                window.pauseVideo = function(){
+
+                    $('.videoInsert')[0].pause();
+                }
+
+                window.flipCover = function(imgData){
+                    //alert('flip')
+                    let $cv = $('.covers');
+                    showImage(imgData);
+                    $cv.addClass(`animate,animate__bounceInOut`).toggleClass('hidden');
+                    
+                }
+
+                window.flip =(selector, animation, prefix = 'animate__') =>{
+                    return new Promise((resolve, reject) => {
+                        const animationName = `${prefix}${animation}`;
+                        const $node = $(selector);
+                        $node.addClass(`${prefix}animated`).addClass(animationName);
+                        function handleAnimationEnd(event) {
+                            event.stopPropagation();
+                            $node.removeClass(animationName);
+                            resolve($node);
+                        }
+                        $node.on('animationend', handleAnimationEnd);
+                    });
+                };
+
+                window.movePipX = (direction, px) =>{
+                    let $pip = $('.pip'),
+                        top = $('.pip').css('top').replace('px','') ;
+                    top = parseInt(px) + parseInt(top);
+                    
+                    $('.pip').css({'top' : `${top}px`  });
+                    //$pip.toggle();
+                }
+                window.movePipY = (direction, px) =>{
+                    let $pip = $('.pip'),
+                        top = $('.pip').css('left').replace('px','') ;
+                    top = parseInt(px) + parseInt(top);
+                    
+                    $('.pip').css({'left' : `${top}px`  });
+                    //$pip.toggle();
+                }
+
+                window.toggleGray = (imgType) =>{
+                    let checked = $(`input.grayscale`).prop('checked');
+                    $(`input.grayscale`).prop('checked',!checked);
+                }
+
+                window.toggleBlur = (imgType) =>{
+                    let checked = $(`input.blur-background`).prop('checked');
+                    $(`input.blur-background`).prop('checked',!checked);
+                }
+
+                window.toggleMarquee = (msg) =>{
+                    $('.marquee p').html(msg);
+                    $('.marquee' ).toggle();
+                }
+
+                window.animateCSS = (element, animation, prefix = 'animate__') =>
+                // We create a Promise and return it
+                new Promise((resolve, reject) => {
+                    const animationName = `${prefix}${animation}`;
+                    const node = $(element)[0];
+
+                    node.classList.add(`${prefix}animated`, animationName);
+
+                    // When the animation ends, we clean the classes and resolve the Promise
+                    function handleAnimationEnd(event) {
+                    event.stopPropagation();
+                    node.classList.remove(`${prefix}animated`, animationName);
+                    resolve('Animation ended');
+                    }
+
+                    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+                });
+            </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="main" classs="fixed">
+            <canvas id="c"></canvas>
+            <div class="fixed static hidden"></div>
+            <div class="hidden marquee animate__animated"><p>
+                Use the mouse to tilt and zoom, hold shift to pan
+            </p></div>
+            <div class="fixed bars animate__animated"></div>
+            
+            <div class="fixed logo animate__animated animate__tada hidden"> </div>
+
+            <div class="pip hidden animate__animated animate__flipInX">
+                <video class="videoInsert" src="img/video/dan.mp4" playsinline    ></video>
+            </div>
+            <input type="checkbox" class="grayscale" />
+            <input type="checkbox" class="blur-background" />
+
+            <div class="fixed overlay animate__animated">
+                
+                <img src="img/overlays/blank.png" alt="">
+            </div>
+            
+            <div class="covers animate__animated">
+                <img src="img/covers/blank.png" alt="">
+            </div>
+            <div class="fixed greenscreen hidden"></div>
+            
+            <div class="background animate__animated animate__infinite infinite"></div>
+            
+        </div>
+        <script async defer>
+        $(document).ready(function() {
+            $('.bars').on('dblclick',function(){
+                $(this).toggleClass('hidden');
+            });
+            $('.logo').on('click',function(){
+                animateCSS('.logo', 'wobble');
+            });
+            //close controls when game board closes
+            $(window).on('unload', function() {
+                caller.close();
+                return "Handler for .unload() called.";
+            });
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "3000",
+                "timeOut": "2500",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp"
+            }
+        });
+            
+        </script>
+        <script src="js/ammo.js"></script>
+        <script src="js/webcamgl.js"></script>
+    </body>
+    <select name="videoSource" id="videoSource"></select>
+</html>

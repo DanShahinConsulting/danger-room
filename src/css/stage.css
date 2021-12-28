@@ -1,0 +1,149 @@
+fthrebody {
+    background-color: white;
+}
+div.fixed{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 1280px;
+    
+    
+}
+
+div.fixed img{
+    max-height: 720px;
+}
+
+div#main {
+    position:relative;
+    top:0;
+    left:0;
+    width: 1280px;
+    height: 720px;
+    background-color: black;
+    background-size: contain;
+    z-index: 0;
+}
+
+div.bars{
+    background-color: black;
+    background-image: url(../img/SMPTE_Color_Bars_16x9.svg);
+    background-size: contain;
+    z-index: 100;
+}
+
+div.covers{
+    /* height: 100vh; */
+    background-image: none;
+    position:absolute;
+    top:0;
+    right:0;
+    background-size: cover;
+    z-index: 5;
+    max-height: 720px !important;
+}
+
+div.overlay{
+    /* height: 100vh; */
+    max-height: 720px;
+    position:absolute;
+    top:0;
+    left:0;
+    background-size: cover;
+    z-index: 6;
+}
+div.covers>img{
+    height:100vh;
+    max-height: 720px;
+}
+
+div.overlay>img{
+    height:100vh;
+    max-height: 720px;
+    filter: drop-shadow(12px 12px 25px rgba(0, 0, 0, 0.9)) blur(0px);
+} 
+.threedee{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 4;
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.robot{
+    /* use this for camera adjustments */
+    filter: hue-rotate(0deg) grayscale(0);
+}
+
+div.background{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 1280px;
+    height: 720px;
+    background-size: 1280px 720px;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-image: url(../img/backgrounds/black.png);
+    
+    z-index: 1;
+}
+
+div.greenscreen{
+    width: 1280px;
+    height: 720px;
+    background-color: #04F404;
+    background-size: contain;
+    z-index: 2;
+}
+
+div.static{
+    width: 1280px;
+    height: 720px;
+    background-image: url(../img/overlays/static.gif);
+    background-size: contain;
+    z-index: 110;
+    opacity: .75;
+}
+
+div.logo {
+    background-image: url(../img/overlays/motherbox\ logo.png);
+    z-index: 99;
+}
+
+.hidden{
+    display: none;
+}
+
+div.pip{
+    position:absolute;
+    top:100px;
+    left:100px;
+    width: 500px;
+    height: 300px;
+    background-color: black;
+    /* background-image: url(../img/overlays/static.gif); */
+    
+    z-index: 7;
+    overflow: hidden;
+
+}
+
+.videoInsert {
+    position: absolute; 
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    background-size: cover;
+    overflow: hidden;
+    width:640px ;
+    height:360px;
+    z-index: 8;
+}
+
