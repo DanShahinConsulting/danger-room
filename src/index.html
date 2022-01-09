@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/controls.css">
         <link rel="stylesheet" href="css/drop.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/dat.gui.js" ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -924,10 +925,12 @@
                     
                     <label for="blur">blur</label>
                     <input type="checkbox" class="blur-background bg-fx" data-type="blur" name="blur"/>
+                    <img class="background" src="img/backgrounds/BatcavePenny.png">
                     <img class="background" src="img/backgrounds/black.png">
                     <img class="background" src="img/backgrounds/newsroom.png">
                     <img class="background" src="img/backgrounds/imax.jpeg">
                     <img class="background" src="img/backgrounds/MST3K.png">
+                    
                 </div>
             </div>
             <div>
@@ -1113,7 +1116,7 @@
 
             }, false);
 
-            __STAGE_HANDLE = window.open('stage.html', '_blank', 'width=1280,height=720,left=0,top=0,titlebar=0,toolbar=0,location=0,status=0,menubar=no,scrollbars=no,');
+            __STAGE_HANDLE = window.open('stage.html', '_blank', 'width=1280,height=720,left=0,top=0,titlebar=0,toolbar=0,location=0,status=0,menubar=no,scrollbars=no,resizable=0');
             
 
             $('button.alert').on('click',()=>{

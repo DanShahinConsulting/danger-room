@@ -105,6 +105,9 @@ function previewAnduploadImage(image,fileType) {
     var img = document.createElement("img");
     img.className = fileType;
 
+    let elem = $(`.${fileType} .img-container`)[0];
+    console.log({elem})
+
     $(`.${fileType} .img-container`).append(img);
 
 

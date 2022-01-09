@@ -160,6 +160,7 @@ function render() {
 
 window.addEventListener( 'keydown', function ( event ) {
     let increment = 0.1;
+    event.preventDefault();
     switch ( event.keyCode ) {
         // LEFT
         case 72:
