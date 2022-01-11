@@ -557,10 +557,10 @@
                 
                 
                 <br/>
-                <div class="img-container drop-region thumbnail" data-type="thumbnail">
+                <ul class="img-container drop-region thumbnail" data-type="thumbnail">
                     <img class="thumbnail selected blank" src="img/covers/blank.png">
                     <img class="thumbnail" src="img/covers/SkateMan1-cover.jpg">   
-                </div>
+                </ul>
             </div>
             <div class="overlay">
                 
@@ -768,12 +768,12 @@
                     
                 </select>
                 <br/>
-                <div class="img-container drop-region overlay" data-type="overlay">
+                <ul class="img-container drop-region overlay" data-type="overlay">
                     
                     <img class="overlay selected blank" src="img/overlays/blank.png">
                     <img class="overlay" src="img/overlays/Batman Adam West.png">
                     <img class="overlay" src="img/overlays/SkateMan.png">
-                </div>
+                </ul>
             </div>
             <div class="background">
                 <button class="wobble">wobble bg</button><button class="bg-toggle">toggle bg</button>
@@ -919,19 +919,20 @@
                     </optgroup>
                     
                 </select><br/>
-                <div class="img-container drop-region background" data-type="background">
-                    <label for="grayscale">B&amp;W</label>
-                    <input type="checkbox" class="grayscale bg-fx" data-type="grayscale" name="grayscale"/>
-                    
-                    <label for="blur">blur</label>
-                    <input type="checkbox" class="blur-background bg-fx" data-type="blur" name="blur"/>
+                <label for="grayscale">B&amp;W</label>
+                <input type="checkbox" class="grayscale bg-fx" data-type="grayscale" name="grayscale"/>
+                
+                <label for="blur">blur</label>
+                <input type="checkbox" class="blur-background bg-fx" data-type="blur" name="blur"/>
+                <ul class="img-container drop-region background" data-type="background">
+
                     <img class="background" src="img/backgrounds/BatcavePenny.png">
                     <img class="background" src="img/backgrounds/black.png">
                     <img class="background" src="img/backgrounds/newsroom.png">
                     <img class="background" src="img/backgrounds/imax.jpeg">
                     <img class="background" src="img/backgrounds/MST3K.png">
                     
-                </div>
+                </ul>
             </div>
             <div>
                 <textarea class="marquee-msg"rows="1" cols="60" maxlength="60">Marquee text goes here Marquee text goes here Marquee text goes here </textarea>
@@ -1279,6 +1280,8 @@
                     });
                 });
             }
+
+            $('.img-container').sortable();
             
 
         });
