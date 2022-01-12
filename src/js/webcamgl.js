@@ -1,6 +1,56 @@
 
 
-const scene = new THREE.Scene()
+// const scene = JSON.parse(localStorage.getItem('userScene') )|| new THREE.Scene()
+let sceneJson = localStorage.getItem('userScene');
+console.log({sceneJson})
+let scene;
+const webcamCanvas = document.createElement('canvas') 
+webcamCanvas.width = 1280   
+webcamCanvas.height = 720
+const webcamTexture =  THREE.Texture = new THREE.Texture(webcamCanvas)
+webcamTexture.minFilter = THREE.LinearFilter
+webcamTexture.magFilter = THREE.LinearFilter
+const material = new THREE.ShaderMaterial({
+    transparent: true,
+    side : THREE.DoubleSide,
+    uniforms: {
+        map: { value: webcamTexture },
+        side: THREE.DoubleSide,
+        keyColor: { value: [0.0, 1.0, 0.0] },
+        similarity: { value: 0.67 },
+        smoothness: { value: 0.0 },
+    },
+    vertexShader: vertexShader(),
+    fragmentShader: fragmentShader(),
+})
+
+const geometry =  new THREE.PlaneGeometry();
+    let plane =  new THREE.Mesh(geometry, material) ;
+if(sceneJson){
+    scene = new THREE.ObjectLoader().parse( JSON.parse(localStorage.getItem('userScene') ) );
+    plane = scene.getObjectByName('screen')
+   
+}else{
+    scene = new THREE.Scene();
+    
+    const boxHelper = new THREE.BoxHelper(plane, 0xff0000)
+    plane.add(boxHelper)
+
+    // plane.rotateY(0.5)
+    plane.name = 'screen';
+    plane.scale.x = 16 /3
+    plane.scale.y = 9/3
+    // plane.scale.z = 4
+    scene.add(plane)
+   // bindKeys();
+}
+
+bindKeys();
+//const scene = new THREE.ObjectLoader().parse( localStorage.getItem('userScene')  )|| new THREE.Scene()
+
+const gridHelper = new THREE.GridHelper(10, 10)
+    gridHelper.position.y = -1.5
+    scene.add(gridHelper)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 var videoSelect = document.querySelector('select#videoSource');
@@ -15,11 +65,9 @@ let showControls = true;
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-const controls = new THREE.OrbitControls(camera, renderer.domElement)
 
-const gridHelper = new THREE.GridHelper(10, 10)
-gridHelper.position.y = -1.5
-scene.add(gridHelper)
+
+
 
 camera.position.z = 5
 
@@ -30,22 +78,32 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     render()
 }
+const controls = new THREE.OrbitControls(camera, renderer.domElement)
+let controlState = localStorage.getItem('controlState');
+if(controlState){
+    // console.log({controlState})
+    // camera.position.set(controlState);
+}
+
+
+controls.addEventListener( 'change', function(evt, foo){
+    console.log(evt, controls, camera.position)
+    localStorage.setItem('controlState', JSON.stringify(camera.position) );
+} );
+
+
 
 const webcam = document.createElement('video')
 
 
-const webcamCanvas = document.createElement('canvas') 
-webcamCanvas.width = 1280   
-webcamCanvas.height = 720
+
 
 const canvasCtx = webcamCanvas.getContext('2d') 
 canvasCtx.fillStyle = '#000000'
 canvasCtx.fillRect(0, 0, webcamCanvas.width, webcamCanvas.height)
-const webcamTexture =  THREE.Texture = new THREE.Texture(webcamCanvas)
-webcamTexture.minFilter = THREE.LinearFilter
-webcamTexture.magFilter = THREE.LinearFilter
 
-const geometry = new THREE.PlaneGeometry()
+
+
 
 function vertexShader() {
     return `
@@ -81,29 +139,9 @@ function fragmentShader() {
     `
 }
 
-const material = new THREE.ShaderMaterial({
-    transparent: true,
-    side : THREE.DoubleSide,
-    uniforms: {
-        map: { value: webcamTexture },
-        side: THREE.DoubleSide,
-        keyColor: { value: [0.0, 1.0, 0.0] },
-        similarity: { value: 0.67 },
-        smoothness: { value: 0.0 },
-    },
-    vertexShader: vertexShader(),
-    fragmentShader: fragmentShader(),
-})
 
-const plane = new THREE.Mesh(geometry, material)
-const boxHelper = new THREE.BoxHelper(plane, 0xff0000)
-plane.add(boxHelper)
 
-// plane.rotateY(0.5)
-plane.scale.x = 16 /3
-plane.scale.y = 9/3
-// plane.scale.z = 4
-scene.add(plane)
+
 
 // const stats: Stats = Stats()
 // document.body.appendChild(stats.dom)
@@ -158,115 +196,121 @@ function render() {
 }
 
 
-window.addEventListener( 'keydown', function ( event ) {
-    let increment = 0.1;
-    event.preventDefault();
-    switch ( event.keyCode ) {
-        // LEFT
-        case 72:
-            showControls = !showControls;
-            gridHelper.visible = showControls;
-            boxHelper.visible = showControls;
-            break;
-        //numpad 8
-        case 56:
-            plane.rotateX(- increment)
-            break;
-        //numpad 2
-        case 50:
-            plane.rotateX(increment)
-            break;
-        //home key
-        case 36:
-            plane.rotation.y = 0;
-            plane.rotation.x = 0;
-            plane.rotation.z = 0;
-            plane.position.y = 0;
-            plane.position.x = 0;
-            plane.position.z = 0;
-            plane.scale.set(16/3 ,9/3,0);
-            break;
-        //end key
-        case 35:
-            plane.rotation.y = 0;
-            plane.rotation.x = 0;
-            plane.rotation.z = 0;
-            plane.position.y = 0;
-            plane.position.x = 0;
-            plane.position.z = 3.1;
-            break;
-        //left arrow
-        case 37:
-            plane.translateX(- increment)
-            break;
-        //right arrow
-        case 39:
-            plane.translateX(increment)
-            break;
-        //left arrow
-        case 38:
-            plane.translateY( increment)
-            break;
-        //right arrow
-        case 40:
-            plane.translateY(- increment)
-            break;
-        //numpad 6
-        case 52:
-            plane.rotateY(- increment)
-            break;
-        //numpad  4
-        case 54:
-            plane.rotateY( increment)
-            break;
+function bindKeys(){
 
-        //numpad  5
-        case 53:
-            plane.scale.set(16/3,9/3,0);
-            break;
+    window.addEventListener( 'keydown', function ( event ) {
+        let increment = 0.1;
+        event.preventDefault();
+        switch ( event.keyCode ) {
+            // LEFT
+            case 72:
+                showControls = !showControls;
+                gridHelper.visible = showControls;
+                boxHelper.visible = showControls;
+                break;
+            //numpad 8
+            case 56:
+                plane.rotateX(- increment)
+                break;
+            //numpad 2
+            case 50:
+                plane.rotateX(increment)
+                break;
+            //home key
+            case 36:
+                plane.rotation.y = 0;
+                plane.rotation.x = 0;
+                plane.rotation.z = 0;
+                plane.position.y = 0;
+                plane.position.x = 0;
+                plane.position.z = 0;
+                plane.scale.set(16/3 ,9/3,0);
+                break;
+            //end key
+            case 35:
+                plane.rotation.y = 0;
+                plane.rotation.x = 0;
+                plane.rotation.z = 0;
+                plane.position.y = 0;
+                plane.position.x = 0;
+                plane.position.z = 3.1;
+                break;
+            //left arrow
+            case 37:
+                plane.translateX(- increment)
+                break;
+            //right arrow
+            case 39:
+                plane.translateX(increment)
+                break;
+            //left arrow
+            case 38:
+                plane.translateY( increment)
+                break;
+            //right arrow
+            case 40:
+                plane.translateY(- increment)
+                break;
+            //numpad 6
+            case 52:
+                plane.rotateY(- increment)
+                break;
+            //numpad  4
+            case 54:
+                plane.rotateY( increment)
+                break;
 
-        //numpad  +
-        case 107:
-            plane.scale.set(plane.scale.x + increment,plane.scale.y ,0);
-            break;
+            //numpad  5
+            case 53:
+                plane.scale.set(16/3,9/3,0);
+                break;
 
-        //numpad  -
-        case 109:
-            plane.scale.set(plane.scale.x -increment,plane.scale.y ,0 );
-            break;
+            //numpad  +
+            case 107:
+                plane.scale.set(plane.scale.x + increment,plane.scale.y ,0);
+                break;
 
-        //numpad  +
-        case 111:
-            plane.scale.set(plane.scale.x ,plane.scale.y + increment,0);
-            break;
+            //numpad  -
+            case 109:
+                plane.scale.set(plane.scale.x -increment,plane.scale.y ,0 );
+                break;
 
-        //numpad  -
-        case 106:
-            plane.scale.set(plane.scale.x ,plane.scale.y -increment ,0 );
-            break;
-        
-        //left arrow
-        case 55:
-            plane.rotateZ( increment)
-            break;
-        //right arrow
-        case 57:
-            plane.rotateZ(- increment)
-            break;
+            //numpad  +
+            case 111:
+                plane.scale.set(plane.scale.x ,plane.scale.y + increment,0);
+                break;
+
+            //numpad  -
+            case 106:
+                plane.scale.set(plane.scale.x ,plane.scale.y -increment ,0 );
+                break;
+            
+            //left arrow
+            case 55:
+                plane.rotateZ( increment)
+                break;
+            //right arrow
+            case 57:
+                plane.rotateZ(- increment)
+                break;
 
 
-        //left arrow
-        case 33:
-            plane.translateZ(- increment)
-            break;
-        //right arrow
-        case 34:
-            plane.translateZ( increment)
-            break;
-        
-        
-    }
-});
+            //left arrow
+            case 33:
+                plane.translateZ(- increment)
+                break;
+            //right arrow
+            case 34:
+                plane.translateZ( increment)
+                break;
+            
+            
+        }
+        //console.log(plane)
+        localStorage.setItem('userScene', JSON.stringify(scene.toJSON()) );
+        //localStorage.setItem('userCamera', JSON.stringify(plane) );
+    });
+}
 
 function getDevices() {
 // AFAICT in Safari this only gets default devices until gUM is called :/
