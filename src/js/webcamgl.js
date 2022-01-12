@@ -79,16 +79,29 @@ function onWindowResize() {
     render()
 }
 const controls = new THREE.OrbitControls(camera, renderer.domElement)
-let controlState = localStorage.getItem('controlState');
-if(controlState){
-    // console.log({controlState})
-    // camera.position.set(controlState);
+let camdata = JSON.parse(localStorage.getItem('camdata') );
+if(camdata){
+    console.log({camdata})
+    //controls.target.set(camdata.x, camdata.y, camdata.z);
+    
+    //controls.update();
+    // camera.position.x = camdata.position.x
+    // camera.position.y = camdata.position.y
+    // camera.position.z = camdata.position.z
+
+    // camera.rotation.x = camdata.rotation.x
+    // camera.rotation.y = camdata.rotation.y
+    // camera.rotation.z = camdata.rotation.z
+    // console.log({cameraPosition})
+    // camera.position.set(cameraPosition);
 }
 
 
 controls.addEventListener( 'change', function(evt, foo){
     console.log(evt, controls, camera.position)
-    localStorage.setItem('controlState', JSON.stringify(camera.position) );
+    localStorage.setItem('camdata', JSON.stringify(camera.position) );
+    localStorage.setItem('camrotation', JSON.stringify(camera.rotation) );
+    
 } );
 
 
