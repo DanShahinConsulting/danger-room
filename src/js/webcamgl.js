@@ -1,7 +1,5 @@
-
-
 // const scene = JSON.parse(localStorage.getItem('userScene') )|| new THREE.Scene()
-let sceneJson = localStorage.getItem('userScene');
+let sceneJson ;//= localStorage.getItem('userScene');
 console.log({sceneJson})
 let scene;
 const webcamCanvas = document.createElement('canvas') 
@@ -22,10 +20,12 @@ const material = new THREE.ShaderMaterial({
     },
     vertexShader: vertexShader(),
     fragmentShader: fragmentShader(),
-})
+});
 
 const geometry =  new THREE.PlaneGeometry();
-    let plane =  new THREE.Mesh(geometry, material) ;
+let plane =  new THREE.Mesh(geometry, material) ;
+const boxHelper = new THREE.BoxHelper(plane, 0xff0000) ;
+
 if(sceneJson){
     scene = new THREE.ObjectLoader().parse( JSON.parse(localStorage.getItem('userScene') ) );
     plane = scene.getObjectByName('screen')
@@ -33,7 +33,7 @@ if(sceneJson){
 }else{
     scene = new THREE.Scene();
     
-    const boxHelper = new THREE.BoxHelper(plane, 0xff0000)
+    
     plane.add(boxHelper)
 
     // plane.rotateY(0.5)
@@ -66,9 +66,6 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 
-
-
-
 camera.position.z = 5
 
 window.addEventListener('resize', onWindowResize, false)
@@ -90,7 +87,6 @@ const savedCamera = JSON.parse( localStorage.getItem( 'savedCamera' ) );
 
 controls.addEventListener( 'change', function(evt, foo){
     console.log(evt, controls, camera.position)
-    localStorage.setItem('userScene', JSON.stringify(scene.toJSON()) );
     localStorage.savedCamera = JSON.stringify({
         cameraPosition: camera.position,
         targetPosition: controls.target
@@ -161,7 +157,7 @@ var data = {
 
 const gui = new dat.GUI()
 const folder = gui.addFolder("Visualization parameters")
-folder.addColor(data, 'keyColor').onChange(() => updateKeyColor(data.keyColor))
+folder.addColor(data, 'keyColor').onChange(() => updateKeyx(data.keyColor))
 folder.add(data, 'similarity', 0.0, 1.0).onChange(() => updateSimilarity(data.similarity))
 folder.add(data, 'smoothness', 0.0, 1.0).onChange(() => updateSmoothness(data.smoothness))
 
@@ -313,11 +309,11 @@ function bindKeys(){
             
         }
         //console.log(plane)
-        localStorage.setItem('userScene', JSON.stringify(scene.toJSON()) );
-        localStorage.savedCamera = JSON.stringify({
-            cameraPosition: camera.position,
-            targetPosition: controls.target
-          });
+        //localStorage.setItem('userScene', JSON.stringify(scene.toJSON()) );
+        // localStorage.savedCamera = JSON.stringify({
+        //     cameraPosition: camera.position,
+        //     targetPosition: controls.target
+        //   });
         //localStorage.setItem('userCamera', JSON.stringify(plane) );
     });
 }
