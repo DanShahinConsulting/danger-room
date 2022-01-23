@@ -59,10 +59,10 @@ div.covers>img{
 }
 
 div.overlay>img{
-    /* height:100vh;
+    height:100vh;
     max-height: 720px;
-    width: 100vw;
-    max-width: 1280px; */
+    /* width: 100vw; */
+    max-width: 1280px;
     /* filter: drop-shadow(12px 12px 25px rgba(0, 0, 0, 0.9)) blur(0px); */
     
 } 
@@ -79,7 +79,7 @@ div.overlay>img{
 
 .robot{
     /* use this for camera adjustments */
-    filter: hue-rotate(0deg) grayscale(0);
+    filter: hue-rotate(180deg) grayscale(0);
 }
 
 div.background{

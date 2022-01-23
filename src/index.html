@@ -194,7 +194,7 @@
                 <button class="logo-wobble hidden">wobble logo</button>
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
-                
+                <button class="threedee-hue-toggle">blue cam</button>
             </div>
 
             <div>
@@ -1152,6 +1152,10 @@
 
             $('button.threedee-toggle').on('click',()=>{
                 __STAGE_HANDLE.toggleThreedee();
+            });
+
+            $('button.threedee-hue-toggle').on('click',()=>{
+                __STAGE_HANDLE.toggleThreedeeHue();
             });
 
 

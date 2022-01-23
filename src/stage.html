@@ -70,6 +70,10 @@
                     $('.threedee').toggle();
                 }
 
+                window.toggleThreedeeHue = function(){
+                    $('.threedee').toggleClass('robot');
+                }
+
                 window.showImage = function(imgData){
                     return new Promise((resolve, reject) => {
                         let $cv = $('.covers');
