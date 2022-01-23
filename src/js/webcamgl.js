@@ -86,26 +86,18 @@ const savedCamera = JSON.parse( localStorage.getItem( 'savedCamera' ) );
 
 
 controls.addEventListener( 'change', function(evt, foo){
-    console.log(evt, controls, camera.position)
+    //console.log(evt, controls, camera.position)
     localStorage.savedCamera = JSON.stringify({
         cameraPosition: camera.position,
         targetPosition: controls.target
       });
 } );
 
-
-
 const webcam = document.createElement('video')
-
-
-
 
 const canvasCtx = webcamCanvas.getContext('2d') 
 canvasCtx.fillStyle = '#000000'
 canvasCtx.fillRect(0, 0, webcamCanvas.width, webcamCanvas.height)
-
-
-
 
 function vertexShader() {
     return `

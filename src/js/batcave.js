@@ -75,7 +75,7 @@ function init() {
 				renderer.domElement.classList.add('threedee')
                 renderer.domElement.classList.add('robot')
                 $('#main').prepend( renderer.domElement );
-                $('.threedee').css('z-index', 9999);
+                //$('.threedee').css('z-index', 5);
 
                 controls = new THREE.OrbitControls( camera, renderer.domElement );
                 controls.enablePan = true;

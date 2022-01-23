@@ -45,6 +45,7 @@ div.covers{
 
 div.overlay{
     /* height: 100vh; */
+    pointer-events: none;
     max-height: 720px;
     position:absolute;
     top:0;
@@ -58,15 +59,19 @@ div.covers>img{
 }
 
 div.overlay>img{
-    height:100vh;
+    /* height:100vh;
     max-height: 720px;
-    filter: drop-shadow(12px 12px 25px rgba(0, 0, 0, 0.9)) blur(0px);
+    width: 100vw;
+    max-width: 1280px; */
+    /* filter: drop-shadow(12px 12px 25px rgba(0, 0, 0, 0.9)) blur(0px); */
+    
 } 
 .threedee{
-    position: fixed;
+    pointer-events:all;
+    position: absolute;
     top:0;
     left:0;
-    z-index: 4;
+    z-index: 1;
     height: 100vh;
     width: 100vw;
     
