@@ -46,7 +46,6 @@ if(sceneJson){
 }
 
 bindKeys();
-//const scene = new THREE.ObjectLoader().parse( localStorage.getItem('userScene')  )|| new THREE.Scene()
 
 const gridHelper = new THREE.GridHelper(10, 10)
     gridHelper.position.y = -1.5
@@ -132,10 +131,6 @@ function fragmentShader() {
         }
     `
 }
-
-
-
-
 
 // const stats: Stats = Stats()
 // document.body.appendChild(stats.dom)
@@ -300,13 +295,7 @@ function bindKeys(){
             
             
         }
-        //console.log(plane)
-        //localStorage.setItem('userScene', JSON.stringify(scene.toJSON()) );
-        // localStorage.savedCamera = JSON.stringify({
-        //     cameraPosition: camera.position,
-        //     targetPosition: controls.target
-        //   });
-        //localStorage.setItem('userCamera', JSON.stringify(plane) );
+
     });
 }
 
