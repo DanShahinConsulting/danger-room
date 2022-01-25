@@ -149,7 +149,7 @@ var data = {
 
 const gui = new dat.GUI()
 const folder = gui.addFolder("Visualization parameters")
-folder.addColor(data, 'keyColor').onChange(() => updateKeyx(data.keyColor))
+folder.addColor(data, 'keyColor').onChange(() => updateKeyColor(data.keyColor))
 folder.add(data, 'similarity', 0.0, 1.0).onChange(() => updateSimilarity(data.similarity))
 folder.add(data, 'smoothness', 0.0, 1.0).onChange(() => updateSmoothness(data.smoothness))
 
