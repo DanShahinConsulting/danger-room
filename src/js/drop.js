@@ -1,4 +1,31 @@
 $(document).ready(function(){
+    let backgroundImages = JSON.parse(localStorage.getItem('backgroundImages') )|| [];
+    let overlayImages = JSON.parse(localStorage.getItem('overlayImages') )|| [];
+    let thumbnailImages = JSON.parse(localStorage.getItem('thumbnailImages') )|| [];
+
+    backgroundImages.forEach(savedBG => {
+        addImage(savedBG,'background')
+    });
+    thumbnailImages.forEach(savedBG => {
+        addImage(savedBG,'thumbnail')
+    });
+    overlayImages.forEach(savedBG => {
+        addImage(savedBG,'overlay')
+    });
+
+    function addImage(saved, imgType){
+        console.log(saved)
+        let fileType = imgType;
+        var img = document.createElement("img");
+        img.src = saved.src;
+        img.className = fileType;
+    
+        let elem = $(`.${fileType} .img-container`)[0];
+        console.log({elem})
+    
+        $(`.${fileType} .img-container`).append(img);
+    }
+    //let userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
 var // where files are dropped + file selector is opened
 $dropRegions = $('.drop-region').not('img'),
 dropRegion = $('.drop-region')[0];
@@ -113,9 +140,15 @@ function previewAnduploadImage(image,fileType) {
 
 
     // read the image...
+    let savedImages = JSON.parse(localStorage.getItem(`${fileType}Images`) )|| [];
     var reader = new FileReader();
     reader.onload = function(e) {
         img.src = e.target.result;
+        savedImages.push({
+            src: e.target.result
+        })
+
+        localStorage.setItem(`${fileType}Images`,JSON.stringify(savedImages))
     }
     reader.readAsDataURL(image);
 
