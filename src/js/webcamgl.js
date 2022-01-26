@@ -54,7 +54,7 @@ const gridHelper = new THREE.GridHelper(10, 10)
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true  })
 renderer.domElement.classList.add('threedee')
-renderer.domElement.classList.add('robot')
+//renderer.domElement.classList.add('robot')
 $('#main').prepend( renderer.domElement );
 $('.threedee').css('z-index', 0);
 
