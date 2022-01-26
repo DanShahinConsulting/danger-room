@@ -52,7 +52,6 @@ const gridHelper = new THREE.GridHelper(10, 10)
     scene.add(gridHelper)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-var videoSelect = document.querySelector('select#videoSource');
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true  })
 renderer.domElement.classList.add('threedee')
 renderer.domElement.classList.add('robot')
@@ -159,10 +158,16 @@ function updateSmoothness(v) {
     material.uniforms.smoothness.value = v
 }
 function updateOptions(v) {
-    console.log(v,data)
-    data.deviceId = v;
-    data.options = v;
-    getStream()
+    console.log(v)
+    // data.deviceId = v;
+    // data.options = v;
+    var constraints = { 
+        deviceId:  {exact: v},
+         //audio: false, 
+         video: {deviceId: v} 
+    }
+  console.log('constraints change', constraints)
+    getStream(constraints)
 }
 
 function animate() {
@@ -318,17 +323,14 @@ function gotDevices(deviceInfos) {
 
 }
 
-function getStream() {
+function getStream(constraints) {
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
         track.stop();
         });
     }
 
-    var constraints = { 
-        deviceId: data.deviceId ? {exact: data.deviceId} : undefined ,
-         audio: false, 
-         video: { width: 1280, height: 720 } }
+    
     
     return navigator.mediaDevices.getUserMedia(constraints).
         then(gotStream).catch(handleError);
@@ -349,5 +351,10 @@ function handleError(error) {
     console.error('Error: ', error);
 }
 
-getStream().then(getDevices).then(gotDevices);
+// var constraints = { 
+//     deviceId: data.deviceId ? {exact: data.deviceId} : undefined ,
+//      audio: false, 
+//      video: { width: 1280, height: 720 } }
+//getStream(constraints).then(getDevices).then(gotDevices);
+getDevices().then(gotDevices)
 animate()
