@@ -195,6 +195,21 @@
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
                 <button class="threedee-hue-toggle">blue cam</button>
+                <label for="camcolor">Cam Hue</label>
+                <input type="range" id="camcolor" name="camcolor"
+                min="0" max="360" value="0">
+
+                <label for="camblur">Cam Blur</label>
+                <input type="range" id="camblur" name="camblur"
+                min="0" max="25" value="0">
+
+                <label for="camgray">Cam Gray</label>
+                <input type="range" id="camgray" name="camgray"
+                min="0" max="100" value="0">
+
+                <label for="camopacity">Cam Opacity</label>
+                <input type="range" id="camopacity" name="camopacity"
+                min="0" max="100" value="100">
             </div>
 
             <div>
@@ -1158,7 +1173,23 @@
                 __STAGE_HANDLE.toggleThreedeeHue();
             });
 
+            $('#camcolor,#camblur,#camgray,#camopacity').on('change',() => {
+                changeCamFilters()
+            });
 
+            function changeCamFilters(){
+                let rotationValue = $('#camcolor').val();
+                let blurValue = $('#camblur').val();
+                let grayValue = $('#camgray').val();
+                let opacityValue = $('#camopacity').val();
+
+                __STAGE_HANDLE.filterCam({
+                    rotationValue,
+                    blurValue,
+                    opacityValue,
+                    grayValue
+                });
+            }
 
             $('button.static-show').on('click',()=>{
                 __STAGE_HANDLE.toggle('.static','hidden');
