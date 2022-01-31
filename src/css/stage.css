@@ -79,7 +79,8 @@ div.overlay>img{
 
 .robot{
     /* use this for camera adjustments */
-    filter: hue-rotate(180deg) grayscale(0);
+    /* filter: hue-rotate(180deg) grayscale(0); */
+    animation: super-rainbow 1s infinite alternate ease-in; 
 }
 
 div.background{
@@ -150,5 +151,14 @@ div.pip{
     width:640px ;
     height:360px;
     z-index: 8;
+}
+
+@keyframes super-rainbow {
+    0%   { filter: hue-rotate(0deg) blur(0px); transform: scale(1);} 
+    20%  { filter: hue-rotate(72deg) blur(2px); transform: scale(0.95);}
+    40%  { filter: hue-rotate(148deg) blur(4px); transform: scale(0.85);}
+    60%  { filter: hue-rotate(180deg) blur(8px); transform: scale(0.75);}
+    80%  { filter: hue-rotate(220deg) blur(10px); transform: scale(0.50);}
+    100% { filter: hue-rotate(360deg) blur(12px); transform: scale(0.25);}
 }
 

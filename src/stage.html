@@ -164,7 +164,7 @@
                 window.filterCam =  (filters) =>{
                     console.log(filters)
                     $('.threedee').css({
-                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%)`
+                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
                     });
                 }
 

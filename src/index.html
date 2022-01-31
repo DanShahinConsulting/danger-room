@@ -194,7 +194,7 @@
                 <button class="logo-wobble hidden">wobble logo</button>
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
-                <button class="threedee-hue-toggle">blue cam</button>
+                <button class="threedee-hue-toggle">animate cam</button>
                 <label for="camcolor">Cam Hue</label>
                 <input type="range" id="camcolor" name="camcolor"
                 min="0" max="360" value="0">
@@ -210,6 +210,18 @@
                 <label for="camopacity">Cam Opacity</label>
                 <input type="range" id="camopacity" name="camopacity"
                 min="0" max="100" value="100">
+
+                <label for="camsaturation">Cam Saturation</label>
+                <input type="range" id="camsaturation" name="camsaturation"
+                min="0" max="400" value="100">
+
+                <label for="camsepia">Cam Sepia</label>
+                <input type="range" id="camsepia" name="camsepia"
+                min="0" max="100" value="0">
+
+                <label for="caminvert">Cam Invert</label>
+                <input type="range" id="caminvert" name="caminvert"
+                min="0" max="100" value="0">
             </div>
 
             <div>
@@ -1173,7 +1185,7 @@
                 __STAGE_HANDLE.toggleThreedeeHue();
             });
 
-            $('#camcolor,#camblur,#camgray,#camopacity').on('change',() => {
+            $('#camcolor,#camblur,#camgray,#camopacity,#camsaturation,#camsepia,#caminvert').on('change',() => {
                 changeCamFilters()
             });
 
@@ -1182,12 +1194,18 @@
                 let blurValue = $('#camblur').val();
                 let grayValue = $('#camgray').val();
                 let opacityValue = $('#camopacity').val();
+                let saturationValue = $('#camsaturation').val();
+                let sepiaValue = $('#camsepia').val();
+                let invertValue = $('#caminvert').val();
 
                 __STAGE_HANDLE.filterCam({
                     rotationValue,
                     blurValue,
                     opacityValue,
-                    grayValue
+                    grayValue,
+                    saturationValue,
+                    sepiaValue,
+                    invertValue
                 });
             }
 
