@@ -1,5 +1,4 @@
-// const scene = JSON.parse(localStorage.getItem('userScene') )|| new THREE.Scene()
-let sceneJson ;//= localStorage.getItem('userScene');
+let sceneJson ;
 console.log({sceneJson})
 let scene;
 const webcamCanvas = document.createElement('canvas') 
@@ -32,17 +31,12 @@ if(sceneJson){
    
 }else{
     scene = new THREE.Scene();
-    
-    
     plane.add(boxHelper)
-
-    // plane.rotateY(0.5)
     plane.name = 'screen';
     plane.scale.x = 16 /3
     plane.scale.y = 9/3
     // plane.scale.z = 4
     scene.add(plane)
-   // bindKeys();
 }
 
 bindKeys();
@@ -351,10 +345,5 @@ function handleError(error) {
     console.error('Error: ', error);
 }
 
-// var constraints = { 
-//     deviceId: data.deviceId ? {exact: data.deviceId} : undefined ,
-//      audio: false, 
-//      video: { width: 1280, height: 720 } }
-//getStream(constraints).then(getDevices).then(gotDevices);
 getDevices().then(gotDevices)
 animate()
