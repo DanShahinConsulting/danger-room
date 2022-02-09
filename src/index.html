@@ -1416,8 +1416,8 @@
                 
                 if(confirm('delete this image?')){
                     let images = JSON.parse(localStorage.getItem(`${img_type}Images`) )|| [];
-                    let index = $( "li" ).index( this ) ;
-                    images.splice(index,1);
+                    let index = $( "img" ).index( this );
+                    images.splice(index -1,1);
                     localStorage.setItem(`${img_type}Images`, JSON.stringify(images) );
                     $img.off('click');
                     $img.remove();
