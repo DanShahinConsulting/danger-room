@@ -620,8 +620,8 @@
                 
                 <br/>
                 <ul class="img-container drop-region thumbnail" data-type="thumbnail">
-                    <img class="thumbnail selected blank" src="img/covers/blank.png">
-                    <img class="thumbnail" src="img/covers/SkateMan1-cover.jpg">   
+                    <img class="thumbnail selected blank unsortable" src="img/covers/blank.png">
+                    <!-- <img class="thumbnail" src="img/covers/SkateMan1-cover.jpg">    -->
                 </ul>
             </div>
             <div class="overlay">
@@ -862,9 +862,9 @@
                 <br/>
                 <ul class="img-container drop-region overlay" data-type="overlay">
                     
-                    <img class="overlay selected blank" src="img/overlays/blank.png">
-                    <img class="overlay" src="img/overlays/Batman Adam West.png">
-                    <img class="overlay" src="img/overlays/SkateMan.png">
+                    <img class="overlay selected blank unsortable" src="img/overlays/blank.png">
+                    <!-- <img class="overlay" src="img/overlays/Batman Adam West.png">
+                    <img class="overlay" src="img/overlays/SkateMan.png"> -->
                 </ul>
             </div>
             <div class="background">
@@ -1042,13 +1042,7 @@
 
                 </div>
                 <ul class="img-container drop-region background" data-type="background">
-
-                    <img class="background" src="img/backgrounds/BatcavePenny.png">
                     <img class="background" src="img/backgrounds/black.png">
-                    <img class="background" src="img/backgrounds/newsroom.png">
-                    <img class="background" src="img/backgrounds/imax.png">
-                    <img class="background" src="img/backgrounds/MST3K.png">
-                    
                 </ul>
             </div>
             <div>
@@ -1418,8 +1412,13 @@
             function deleteImg(event){
                 console.log(event)
                 $img = $(event.target);
+                let img_type = $img.parent().data('type')
                 
                 if(confirm('delete this image?')){
+                    let images = JSON.parse(localStorage.getItem(`${img_type}Images`) )|| [];
+                    let index = $( "li" ).index( this ) ;
+                    images.splice(index,1);
+                    localStorage.setItem(`${img_type}Images`, JSON.stringify(images) );
                     $img.off('click');
                     $img.remove();
                     __STAGE_HANDLE.toggle('.covers','hidden');
@@ -1468,10 +1467,50 @@
                 });
             }
 
-            $('.img-container').sortable();
+            $('.img-container').sortable({
+                
+                update: function(event, ui) { 
+                    let $item = $(ui.item);
+                    let img_type = $item.parent().data('type')
+                    if(ui.item.index() === 0){
+                        return;
+                    }
+                    let new_index = ui.item.index() -1;
+                    console.log('update: '+ui.item.index())
+                    console.log('started at' + $item.data('startindex'))
+                    console.log('moving image type',img_type)
+                    moveImage(img_type, $(ui.item).data('startindex'),new_index)
+                },
+                start: function(event, ui) { 
+                    if(ui.item.index() === 0){
+                        return;
+                    }
+                    let starting_index = ui.item.index() -1;
+                    console.log('starting_index: ' + starting_index)
+                    $(ui.item).data('startindex', starting_index);
+                }
+            });
             
 
         });
+
+        function moveImage(img_type,startIndex,newIndex){
+            let userSounds = JSON.parse(localStorage.getItem(`${img_type}Images`) )|| [];
+            array_move(userSounds,startIndex,newIndex);
+            localStorage.setItem(`${img_type}Images`, JSON.stringify(userSounds) );
+        }
+    
+        function array_move(arr, old_index, new_index) {
+            if (new_index >= arr.length) {
+                var k = new_index - arr.length + 1;
+                while (k--) {
+                    arr.push(undefined);
+                }
+            }
+            arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+            return arr; // for testing
+        };
+
         function getBase64Image(img) {
             var canvas = document.createElement("canvas");
             canvas.width = img.naturalWidth;

@@ -125,7 +125,7 @@ function validateImage(image) {
 
 }
 
-function previewAnduploadImage(image,fileType) {
+async function previewAnduploadImage(image,fileType) {
 
 
     // previewing image
@@ -136,8 +136,6 @@ function previewAnduploadImage(image,fileType) {
     console.log({elem})
 
     $(`.${fileType} .img-container`).append(img);
-
-
 
     // read the image...
     let savedImages = JSON.parse(localStorage.getItem(`${fileType}Images`) )|| [];
@@ -150,7 +148,7 @@ function previewAnduploadImage(image,fileType) {
 
         localStorage.setItem(`${fileType}Images`,JSON.stringify(savedImages))
     }
-    reader.readAsDataURL(image);
+    await reader.readAsDataURL(image);
 
     // create FormData
     var formData = new FormData();
