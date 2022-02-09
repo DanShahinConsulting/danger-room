@@ -195,33 +195,36 @@
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
                 <button class="threedee-hue-toggle">animate cam</button>
-                <label for="camcolor">Cam Hue</label>
-                <input type="range" id="camcolor" name="camcolor"
-                min="0" max="360" value="0">
+                <div class="controls cam">
+                    <label for="camcolor">Cam Hue</label>
+                    <input type="range" id="camcolor" name="camcolor"
+                    min="0" max="360" value="0">
 
-                <label for="camblur">Cam Blur</label>
-                <input type="range" id="camblur" name="camblur"
-                min="0" max="25" value="0">
+                    <label for="camblur">Cam Blur</label>
+                    <input type="range" id="camblur" name="camblur"
+                    min="0" max="25" value="0">
 
-                <label for="camgray">Cam Gray</label>
-                <input type="range" id="camgray" name="camgray"
-                min="0" max="100" value="0">
+                    <label for="camgray">Cam Gray</label>
+                    <input type="range" id="camgray" name="camgray"
+                    min="0" max="100" value="0">
 
-                <label for="camopacity">Cam Opacity</label>
-                <input type="range" id="camopacity" name="camopacity"
-                min="0" max="100" value="100">
+                    <label for="camopacity">Cam Opacity</label>
+                    <input type="range" id="camopacity" name="camopacity"
+                    min="0" max="100" value="100">
 
-                <label for="camsaturation">Cam Saturation</label>
-                <input type="range" id="camsaturation" name="camsaturation"
-                min="0" max="400" value="100">
+                    <label for="camsaturation">Cam Saturation</label>
+                    <input type="range" id="camsaturation" name="camsaturation"
+                    min="0" max="400" value="100">
 
-                <label for="camsepia">Cam Sepia</label>
-                <input type="range" id="camsepia" name="camsepia"
-                min="0" max="100" value="0">
+                    <label for="camsepia">Cam Sepia</label>
+                    <input type="range" id="camsepia" name="camsepia"
+                    min="0" max="100" value="0">
 
-                <label for="caminvert">Cam Invert</label>
-                <input type="range" id="caminvert" name="caminvert"
-                min="0" max="100" value="0">
+                    <label for="caminvert">Cam Invert</label>
+                    <input type="range" id="caminvert" name="caminvert"
+                    min="0" max="100" value="0">
+
+                </div>  
             </div>
 
             <div>
@@ -376,6 +379,38 @@
             <div class="thumbnail">
                 <button class="cover-toggle">toggle cover</button>
                 <button class="cover-wobble">wobble cover</button>
+                
+                <div class="controls cover">
+                    <label for="covercolor">cover Hue</label>
+                    <input type="range" id="covercolor" name="covercolor"
+                    min="0" max="360" value="0">
+
+                    <label for="coverblur">cover Blur</label>
+                    <input type="range" id="coverblur" name="coverblur"
+                    min="0" max="25" value="0">
+
+                    <label for="covergray">cover Gray</label>
+                    <input type="range" id="covergray" name="covergray"
+                    min="0" max="100" value="0">
+
+                    <label for="coveropacity">cover Opacity</label>
+                    <input type="range" id="coveropacity" name="coveropacity"
+                    min="0" max="100" value="100">
+
+                    <label for="coversaturation">cover Saturation</label>
+                    <input type="range" id="coversaturation" name="coversaturation"
+                    min="0" max="400" value="100">
+
+                    <label for="coversepia">cover Sepia</label>
+                    <input type="range" id="coversepia" name="coversepia"
+                    min="0" max="100" value="0">
+
+                    <label for="coverinvert">cover Invert</label>
+                    <input type="range" id="coverinvert" name="coverinvert"
+                    min="0" max="100" value="0">
+
+                </div>
+
                 exit:
                 <select class="animations animation-cover exit">
                     <option value="none">none</option>
@@ -593,6 +628,36 @@
                 
                 <button class="overlay-toggle">toggle overlay</button>
                 <button class="overlay-wobble">wobble overlay</button>
+                <div class="controls overlay">
+                    <label for="overlaycolor">overlay Hue</label>
+                    <input type="range" id="overlaycolor" name="overlaycolor"
+                    min="0" max="360" value="0">
+
+                    <label for="overlayblur">overlay Blur</label>
+                    <input type="range" id="overlayblur" name="overlayblur"
+                    min="0" max="25" value="0">
+
+                    <label for="overlaygray">overlay Gray</label>
+                    <input type="range" id="overlaygray" name="overlaygray"
+                    min="0" max="100" value="0">
+
+                    <label for="overlayopacity">overlay Opacity</label>
+                    <input type="range" id="overlayopacity" name="overlayopacity"
+                    min="0" max="100" value="100">
+
+                    <label for="overlaysaturation">overlay Saturation</label>
+                    <input type="range" id="overlaysaturation" name="overlaysaturation"
+                    min="0" max="400" value="100">
+
+                    <label for="overlaysepia">overlay Sepia</label>
+                    <input type="range" id="overlaysepia" name="overlaysepia"
+                    min="0" max="100" value="0">
+
+                    <label for="overlayinvert">overlay Invert</label>
+                    <input type="range" id="overlayinvert" name="overlayinvert"
+                    min="0" max="100" value="0">
+
+                </div>
                 exit:
                 <select class="animations animation-overlay exit">
                     <option value="none">none</option>
@@ -946,11 +1011,36 @@
                     </optgroup>
                     
                 </select><br/>
-                <label for="grayscale">B&amp;W</label>
-                <input type="checkbox" class="grayscale bg-fx" data-type="grayscale" name="grayscale"/>
-                
-                <label for="blur">blur</label>
-                <input type="checkbox" class="blur-background bg-fx" data-type="blur" name="blur"/>
+                <div class="controls bg">
+                    <label for="bgcolor">bg Hue</label>
+                    <input type="range" id="bgcolor" name="bgcolor"
+                    min="0" max="360" value="0">
+
+                    <label for="bgblur">bg Blur</label>
+                    <input type="range" id="bgblur" name="bgblur"
+                    min="0" max="25" value="0">
+
+                    <label for="bggray">bg Gray</label>
+                    <input type="range" id="bggray" name="bggray"
+                    min="0" max="100" value="0">
+
+                    <label for="bgopacity">bg Opacity</label>
+                    <input type="range" id="bgopacity" name="bgopacity"
+                    min="0" max="100" value="100">
+
+                    <label for="bgsaturation">bg Saturation</label>
+                    <input type="range" id="bgsaturation" name="bgsaturation"
+                    min="0" max="400" value="100">
+
+                    <label for="bgsepia">bg Sepia</label>
+                    <input type="range" id="bgsepia" name="bgsepia"
+                    min="0" max="100" value="0">
+
+                    <label for="bginvert">bg Invert</label>
+                    <input type="range" id="bginvert" name="bginvert"
+                    min="0" max="100" value="0">
+
+                </div>
                 <ul class="img-container drop-region background" data-type="background">
 
                     <img class="background" src="img/backgrounds/BatcavePenny.png">
@@ -1188,24 +1278,68 @@
             $('#camcolor,#camblur,#camgray,#camopacity,#camsaturation,#camsepia,#caminvert').on('change',() => {
                 changeCamFilters()
             });
+            $('#bgcolor,#bgblur,#bggray,#bgopacity,#bgsaturation,#bgsepia,#bginvert').on('change',() => {
+                changebgFilters()
+            });
+
+            $('#covercolor,#coverblur,#covergray,#coveropacity,#coversaturation,#coversepia,#coverinvert').on('change',() => {
+                changeCoverFilters()
+            });
+
+            $('#overlaycolor,#overlayblur,#overlaygray,#overlayopacity,#overlaysaturation,#overlaysepia,#overlayinvert').on('change',() => {
+                changeOverlayFilters()
+            });
+
+            function changeOverlayFilters(){
+
+                __STAGE_HANDLE.filterOverlay({
+                    rotationValue : $('#overlaycolor').val(),
+                    blurValue : $('#overlayblur').val(),
+                    opacityValue: $('#overlayopacity').val(),
+                    grayValue : $('#overlaygray').val(),
+                    saturationValue : $('#overlaysaturation').val(),
+                    sepiaValue : $('#overlaysepia').val(),
+                    invertValue : $('#overlayinvert').val()
+                });
+            }
+
+            function changeCoverFilters(){
+
+                __STAGE_HANDLE.filterCovers({
+                    rotationValue : $('#covercolor').val(),
+                    blurValue : $('#coverblur').val(),
+                    opacityValue: $('#coveropacity').val(),
+                    grayValue : $('#covergray').val(),
+                    saturationValue : $('#coversaturation').val(),
+                    sepiaValue : $('#coversepia').val(),
+                    invertValue : $('#coverinvert').val()
+                });
+            }
+
+            function changebgFilters(){
+
+                __STAGE_HANDLE.filterBG({
+                    rotationValue : $('#bgcolor').val(),
+                    blurValue : $('#bgblur').val(),
+                    opacityValue: $('#bgopacity').val(),
+                    grayValue : $('#bggray').val(),
+                    saturationValue : $('#bgsaturation').val(),
+                    sepiaValue : $('#bgsepia').val(),
+                    invertValue : $('#bginvert').val()
+                });
+            }
 
             function changeCamFilters(){
-                let rotationValue = $('#camcolor').val();
-                let blurValue = $('#camblur').val();
-                let grayValue = $('#camgray').val();
-                let opacityValue = $('#camopacity').val();
-                let saturationValue = $('#camsaturation').val();
-                let sepiaValue = $('#camsepia').val();
-                let invertValue = $('#caminvert').val();
+                
 
                 __STAGE_HANDLE.filterCam({
-                    rotationValue,
-                    blurValue,
-                    opacityValue,
-                    grayValue,
-                    saturationValue,
-                    sepiaValue,
-                    invertValue
+                    rotationValue : $('#camcolor').val(),
+                    blurValue : $('#camblur').val(),
+                    opacityValue: $('#camopacity').val(),
+                    grayValue : $('#camgray').val(),
+                    saturationValue : $('#camsaturation').val(),
+                    sepiaValue : $('#camsepia').val(),
+                    invertValue : $('#caminvert').val()
                 });
             }
 

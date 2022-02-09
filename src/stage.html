@@ -168,6 +168,28 @@
                     });
                 }
 
+                window.filterBG =  (filters) =>{
+                    console.log(filters)
+                    $('.background').css({
+                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
+                    });
+                }
+
+                window.filterCovers =  (filters) =>{
+                    console.log(filters)
+                    $('.covers').css({
+                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
+                    });
+                }
+
+                window.filterOverlay =  (filters) =>{
+                    console.log('overlay', filters)
+                    $('.overlay').css({
+                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
+                    });
+                    
+                }
+
 
 
                 window.animateCSS = (element, animation, prefix = 'animate__') =>

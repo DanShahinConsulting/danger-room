@@ -1,6 +1,6 @@
 {
-  "name": "virtualset-electron",
-  "productName": "Virtual Set",
+  "name": "danger-room",
+  "productName": "Danger Room",
   "version": "1.0.0",
   "description": "Customizable Animated Virtual Set for Streaming",
   "main": "src/index.js",
