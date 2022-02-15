@@ -1042,7 +1042,7 @@
 
                 </div>
                 <ul class="img-container drop-region background" data-type="background">
-                    <img class="background" src="img/backgrounds/black.png">
+                    <img class="background blank" src="img/backgrounds/black.png">
                 </ul>
             </div>
             <div>
@@ -1269,18 +1269,18 @@
                 __STAGE_HANDLE.toggleThreedeeHue();
             });
 
-            $('#camcolor,#camblur,#camgray,#camopacity,#camsaturation,#camsepia,#caminvert').on('change',() => {
+            $('#camcolor,#camblur,#camgray,#camopacity,#camsaturation,#camsepia,#caminvert').on('input',() => {
                 changeCamFilters()
             });
-            $('#bgcolor,#bgblur,#bggray,#bgopacity,#bgsaturation,#bgsepia,#bginvert').on('change',() => {
+            $('#bgcolor,#bgblur,#bggray,#bgopacity,#bgsaturation,#bgsepia,#bginvert').on('input',() => {
                 changebgFilters()
             });
 
-            $('#covercolor,#coverblur,#covergray,#coveropacity,#coversaturation,#coversepia,#coverinvert').on('change',() => {
+            $('#covercolor,#coverblur,#covergray,#coveropacity,#coversaturation,#coversepia,#coverinvert').on('input',() => {
                 changeCoverFilters()
             });
 
-            $('#overlaycolor,#overlayblur,#overlaygray,#overlayopacity,#overlaysaturation,#overlaysepia,#overlayinvert').on('change',() => {
+            $('#overlaycolor,#overlayblur,#overlaygray,#overlayopacity,#overlaysaturation,#overlaysepia,#overlayinvert').on('input',() => {
                 changeOverlayFilters()
             });
 
@@ -1383,19 +1383,6 @@
                 __STAGE_HANDLE.toggle('.overlay','hidden');
             });
 
-            $('input.grayscale').on('change',function(){
-                $chkbox = $(this),
-                dataType = $chkbox.data('type');
-                __STAGE_HANDLE.toggleGray(dataType);
-            });
-
-            $('input.blur-background').on('change',function(){
-                $chkbox = $(this),
-                isClicked = $chkbox.prop('checked');
-                dataType = $chkbox.data('type');
-                
-                __STAGE_HANDLE.toggleBlur(dataType);
-            });
 
             //close controls when game board closes
             $(window).on('unload', function() {
@@ -1413,7 +1400,7 @@
                 console.log(event)
                 $img = $(event.target);
                 let img_type = $img.parent().data('type')
-                
+                //alert (img_type)
                 if(confirm('delete this image?')){
                     let images = JSON.parse(localStorage.getItem(`${img_type}Images`) )|| [];
                     let index = $( "img" ).index( this );
@@ -1447,7 +1434,7 @@
                 let imgData = $img.attr('src');;
                 console.log(imgData)
                 __STAGE_HANDLE.showBackground(imgData);
-                __STAGE_HANDLE.animateCSS('.background', $('select.animations.animation-background'));
+                //__STAGE_HANDLE.animateCSS('.background', $('select.animations.animation-background'));
             });
 
             $('img.overlay').on('click',flipOverlay);
