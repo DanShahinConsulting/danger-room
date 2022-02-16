@@ -88,7 +88,7 @@ function handleDrop(e) {
         //alert(fileType)
 
     if (files.length) {
-
+        
         handleFiles(files,fileType);
         
     } 
@@ -99,10 +99,11 @@ function handleDrop(e) {
 
 
 
-function handleFiles(files,fileType) {
+async function  handleFiles(files,fileType) {
     for (var i = 0, len = files.length; i < len; i++) {
-        if (validateImage(files[i]))
-            previewAnduploadImage(files[i],fileType);
+        if (validateImage(files[i])){
+            await previewAnduploadImage(files[i],fileType);
+        }
     }
 }
 
@@ -138,15 +139,16 @@ async function previewAnduploadImage(image,fileType) {
     $(`.${fileType} .img-container`).append(img);
 
     // read the image...
-    let savedImages = JSON.parse(localStorage.getItem(`${fileType}Images`) )|| [];
+    
     var reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = async function(e) {
+        let savedImages = JSON.parse(localStorage.getItem(`${fileType}Images`) )|| [];
         img.src = e.target.result;
         savedImages.push({
             src: e.target.result
         })
 
-        localStorage.setItem(`${fileType}Images`,JSON.stringify(savedImages))
+        await localStorage.setItem(`${fileType}Images`,JSON.stringify(savedImages))
     }
     await reader.readAsDataURL(image);
 

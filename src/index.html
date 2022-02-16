@@ -1403,8 +1403,9 @@
                 //alert (img_type)
                 if(confirm('delete this image?')){
                     let images = JSON.parse(localStorage.getItem(`${img_type}Images`) )|| [];
-                    let index = $( "img" ).index( this );
-                    images.splice(index -1,1);
+                    let index = $( `img.${img_type}` ).not('.blank').index( this );
+                    console.log(`deleting index ${index}`)
+                    images.splice(index,1);
                     localStorage.setItem(`${img_type}Images`, JSON.stringify(images) );
                     $img.off('click');
                     $img.remove();
