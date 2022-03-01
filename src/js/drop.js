@@ -1,17 +1,26 @@
 $(document).ready(function(){
-    let backgroundImages = JSON.parse(localStorage.getItem('backgroundImages') )|| [];
-    let overlayImages = JSON.parse(localStorage.getItem('overlayImages') )|| [];
-    let thumbnailImages = JSON.parse(localStorage.getItem('thumbnailImages') )|| [];
+    window.init = function(){
 
-    backgroundImages.forEach(savedBG => {
-        addImage(savedBG,'background')
-    });
-    thumbnailImages.forEach(savedBG => {
-        addImage(savedBG,'thumbnail')
-    });
-    overlayImages.forEach(savedBG => {
-        addImage(savedBG,'overlay')
-    });
+    
+
+    
+        let backgroundImages = JSON.parse(localStorage.getItem('backgroundImages') )|| [];
+        let overlayImages = JSON.parse(localStorage.getItem('overlayImages') )|| [];
+        let thumbnailImages = JSON.parse(localStorage.getItem('thumbnailImages') )|| [];
+
+        backgroundImages.forEach(savedBG => {
+            addImage(savedBG,'background')
+        });
+        thumbnailImages.forEach(savedBG => {
+            addImage(savedBG,'thumbnail')
+        });
+        overlayImages.forEach(savedBG => {
+            addImage(savedBG,'overlay')
+        });
+
+    }
+
+    init();
 
     function addImage(saved, imgType){
         console.log(saved)

@@ -191,6 +191,7 @@
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
                 <button class="threedee-hue-toggle">animate cam</button>
+                <button class="capture">capture</button>
                 <div class="controls cam">
                     <label for="camcolor">Cam Hue</label>
                     <input type="range" id="camcolor" name="camcolor"
@@ -1233,6 +1234,12 @@
 
             $('button.bars').on('click',()=>{
                 __STAGE_HANDLE.toggle('.bars','hidden');
+            });
+
+            $('button.capture').on('click',async ()=>{
+                await __STAGE_HANDLE.capture();
+                alert('cap')
+                init()
             });
 
             $('button.marquee').on('click',()=>{

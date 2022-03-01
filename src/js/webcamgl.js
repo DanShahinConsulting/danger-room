@@ -46,7 +46,7 @@ const gridHelper = new THREE.GridHelper(10, 10)
     scene.add(gridHelper)
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true  })
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer : true  })
 renderer.domElement.classList.add('threedee')
 //renderer.domElement.classList.add('robot')
 $('#main').prepend( renderer.domElement );
@@ -297,6 +297,8 @@ function bindKeys(){
 
     });
 }
+
+
 
 function getDevices() {
 // AFAICT in Safari this only gets default devices until gUM is called :/
