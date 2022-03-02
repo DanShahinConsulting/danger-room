@@ -2,8 +2,9 @@ $(document).ready(function(){
     window.init = function(){
 
     
-
-    
+        //$(`.img-container img.background`).not('.blank').remove();
+        //$(`.img-container img.thumbnail`).not('.blank').remove();
+        // $(`.img-container .overlay`).not('.blank').remove();
         let backgroundImages = JSON.parse(localStorage.getItem('backgroundImages') )|| [];
         let overlayImages = JSON.parse(localStorage.getItem('overlayImages') )|| [];
         let thumbnailImages = JSON.parse(localStorage.getItem('thumbnailImages') )|| [];
