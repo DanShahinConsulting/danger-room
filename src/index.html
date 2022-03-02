@@ -191,7 +191,7 @@
                 <button class="pip-toggle">toggle pip</button>
                 <button class="threedee-toggle">toggle threedee</button>
                 <button class="threedee-hue-toggle">animate cam</button>
-                <button class="capture">capture</button>
+                
                 <div class="controls cam">
                     <label for="camcolor">Cam Hue</label>
                     <input type="range" id="camcolor" name="camcolor"
@@ -437,7 +437,7 @@
                         <option value="bounceOut">bounceOut</option>
                         <option value="bounceOutDown">bounceOutDown</option>
                         <option value="bounceOutLeft">bounceOutLeft</option>
-                        <option selected value="bounceOutRight">bounceOutRight</option>
+                        <option value="bounceOutRight">bounceOutRight</option>
                         <option value="bounceOutUp">bounceOutUp</option>
                     </optgroup>
 
@@ -489,7 +489,7 @@
 
 
                     <optgroup label="Zooming exits">
-                        <option value="zoomOut">zoomOut</option>
+                        <option value="zoomOut" selected >zoomOut</option>
                         <option value="zoomOutDown">zoomOutDown</option>
                         <option value="zoomOutLeft">zoomOutLeft</option>
                         <option value="zoomOutRight">zoomOutRight</option>
@@ -594,7 +594,7 @@
                     </optgroup>
 
                     <optgroup label="Zooming entrances">
-                        <option value="zoomIn">zoomIn</option>
+                        <option value="zoomIn" selected>zoomIn</option>
                         <option value="zoomInDown">zoomInDown</option>
                         <option value="zoomInLeft">zoomInLeft</option>
                         <option value="zoomInRight">zoomInRight</option>
@@ -684,12 +684,12 @@
                         <option value="bounceOut">bounceOut</option>
                         <option value="bounceOutDown">bounceOutDown</option>
                         <option value="bounceOutLeft">bounceOutLeft</option>
-                        <option selected value="bounceOutRight">bounceOutRight</option>
+                        <option  value="bounceOutRight">bounceOutRight</option>
                         <option value="bounceOutUp">bounceOutUp</option>
                     </optgroup>
 
                     <optgroup label="Fading Exits">
-                        <option selected value="fadeOut">fadeOut</option>
+                        <option value="fadeOut">fadeOut</option>
                         <option value="fadeOutDown">fadeOutDown</option>
                         <option value="fadeOutDownBig">fadeOutDownBig</option>
                         <option value="fadeOutLeft">fadeOutLeft</option>
@@ -697,7 +697,7 @@
                         <option value="fadeOutRight">fadeOutRight</option>
                         <option value="fadeOutRightBig">fadeOutRightBig</option>
                         <option value="fadeOutUp">fadeOutUp</option>
-                        <option value="fadeOutUpBig">fadeOutUpBig</option>
+                        <option value="fadeOutUpBig" selected>fadeOutUpBig</option>
                         <option value="fadeOutTopLeft">fadeOutTopLeft</option>
                         <option value="fadeOutTopRight">fadeOutTopRight</option>
                         <option value="fadeOutBottomLeft">fadeOutBottomLeft</option>
@@ -1042,6 +1042,15 @@
                     <img class="background blank" src="img/backgrounds/black.png">
                 </ul>
             </div>
+
+            <div class="scene">
+                <button class="capture">capture</button>
+                <button class="delete_scenes">delete all</button>
+                <ul class="img-container drop-region scene" data-type="scene">
+                    <!-- <img class="background blank" src="img/backgrounds/black.png"> -->
+                </ul>
+            </div>
+
             <div>
                 <textarea class="marquee-msg"rows="1" cols="60" maxlength="60">Marquee text goes here Marquee text goes here Marquee text goes here </textarea>
                 <button class="marquee hidden">toggle marqee</button>
@@ -1225,7 +1234,7 @@
 
             }, false);
 
-            __STAGE_HANDLE = window.open('stage.html', '_blank', 'width=1280,height=748,left=0,top=0,titlebar=0,toolbar=0,location=0,status=0,menubar=no,scrollbars=no,resizable=1');
+            __STAGE_HANDLE = window.open('stage.html', '_blank', 'width=1280,height=720,left=0,top=0,titlebar=0,toolbar=0,location=0,status=0,menubar=no,scrollbars=no,resizable=1');
             
 
             $('button.alert').on('click',()=>{
@@ -1238,8 +1247,15 @@
 
             $('button.capture').on('click',async ()=>{
                 await __STAGE_HANDLE.capture();
-                alert('cap')
-                init()
+                await window.loadScenes()
+                
+            });
+            $('button.delete_scenes').on('click',async ()=>{
+                if(confirm('really delete all scenes from storage?')){
+                    await localStorage.setItem(`sceneImages`,JSON.stringify([]))
+                    window.loadScenes();
+                }
+                
             });
 
             $('button.marquee').on('click',()=>{

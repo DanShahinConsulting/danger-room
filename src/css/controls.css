@@ -9,7 +9,7 @@ body {
     align-items: center;
     height: 100%;
 }
-div.thumbnail,div.background,div.overlay{
+div.thumbnail,div.background,div.overlay,div.scene{
     padding:4px;
     border: 2px solid lightgray;
 }
@@ -32,6 +32,15 @@ img.selected {
 }
 
 .background img{
+    max-height: 100px;
+    display:inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow:hidden;
+    flex-basis: content;
+}
+
+.scene img{
     max-height: 100px;
     display:inline-flex;
     flex-direction: row;

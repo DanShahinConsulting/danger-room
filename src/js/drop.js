@@ -1,4 +1,13 @@
 $(document).ready(function(){
+
+    window.loadScenes = async ()=>{
+        $('img.scene').remove();
+        let backgroundImages = await JSON.parse(localStorage.getItem('sceneImages') )|| [];
+        await backgroundImages.forEach(async savedBG => {
+            await addImage(savedBG,'scene')
+        });
+        
+    }
     window.init = function(){
 
     
@@ -8,6 +17,8 @@ $(document).ready(function(){
         let backgroundImages = JSON.parse(localStorage.getItem('backgroundImages') )|| [];
         let overlayImages = JSON.parse(localStorage.getItem('overlayImages') )|| [];
         let thumbnailImages = JSON.parse(localStorage.getItem('thumbnailImages') )|| [];
+        let sceneImages = JSON.parse(localStorage.getItem('sceneImages') )|| [];
+
 
         backgroundImages.forEach(savedBG => {
             addImage(savedBG,'background')
@@ -19,21 +30,28 @@ $(document).ready(function(){
             addImage(savedBG,'overlay')
         });
 
+        sceneImages.forEach(savedScene => {
+            addImage(savedScene,'scene')
+        });
+
     }
 
     init();
+    loadScenes();
 
     function addImage(saved, imgType){
         console.log(saved)
         let fileType = imgType;
         var img = document.createElement("img");
-        img.src = saved.src;
-        img.className = fileType;
-    
-        let elem = $(`.${fileType} .img-container`)[0];
-        console.log({elem})
-    
-        $(`.${fileType} .img-container`).append(img);
+        if(saved){
+            img.src = saved.src;
+            img.className = fileType;
+        
+            let elem = $(`.${fileType} .img-container`)[0];
+            console.log({elem})
+        
+            $(`.${fileType} .img-container`).append(img);
+        }
     }
     //let userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
 var // where files are dropped + file selector is opened

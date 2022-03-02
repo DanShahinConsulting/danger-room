@@ -184,19 +184,18 @@
                     
                 }
 
-                window.capture = () => {
-                    html2canvas(document.querySelector("body"), { onrendered: async function(canvas) { 
+                window.capture = async () => {
+                    await html2canvas(document.querySelector("body"), { onrendered: async function(canvas) { 
                             //window.localStorage.setItem(id, canvas.toDataURL()); 
                             
                         } 
                     }).then(async (canvas) => {
-                        canvas.id = 'foo';
                         console.log(canvas)
-                        let savedImages = await JSON.parse(localStorage.getItem(`backgroundImages`) )|| [];
+                        let savedImages = await JSON.parse(localStorage.getItem(`sceneImages`) )|| [];
                             savedImages.push({
                                 src: canvas.toDataURL()
                             })
-                            await localStorage.setItem(`backgroundImages`,JSON.stringify(savedImages))
+                            await localStorage.setItem(`sceneImages`,JSON.stringify(savedImages))
 
                     });
                 }
