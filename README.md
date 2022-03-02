@@ -1,4 +1,4 @@
-# virtualset-electron
+# Danger Room
 
 website:
-https://danshahinconsulting.github.io/virtualset-electron/
+https://danshahinconsulting.github.io/danger-room/
