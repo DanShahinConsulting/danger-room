@@ -1413,7 +1413,20 @@
             
             $('.overlay .img-container').on('click','img.overlay',flipOverlay);
 
-            
+            $('.scene .img-container').on('click','img.scene',exportScene);
+
+            function exportScene(event){
+                var canvas = event.target;
+                console.log({canvas})
+                //window.open(canvas.toDataURL('image/png'));
+                var gh = canvas.src;
+
+                var a  = document.createElement('a');
+                a.href = gh;
+                a.download = 'scene.png';
+
+                a.click()
+            }
             
             function deleteImg(event){
                 console.log(event)
