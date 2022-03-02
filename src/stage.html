@@ -185,10 +185,10 @@
                 }
 
                 window.capture = async () => {
-                    await html2canvas(document.querySelector("body"), { onrendered: async function(canvas) { 
+                    await html2canvas(document.querySelector("body"),{  onrendered: async function(canvas) { 
                             //window.localStorage.setItem(id, canvas.toDataURL()); 
                             
-                        } 
+                        }, width: 1280, height:720
                     }).then(async (canvas) => {
                         console.log(canvas)
                         let savedImages = await JSON.parse(localStorage.getItem(`sceneImages`) )|| [];
