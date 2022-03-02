@@ -1,7 +1,7 @@
-![Book logo](/danger-room/assets/images/logo.png)
 # Danger Room 
 ## A virtual studio 3D streaming compositor thingy
 
+https://user-images.githubusercontent.com/933826/156461249-4f9a5ed1-239e-4080-b728-5fe534f5a253.mp4
 
 You can use the [editor on GitHub](https://github.com/DanShahinConsulting/virtualset-electron/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
