@@ -137,7 +137,7 @@ async function  handleFiles(files,fileType) {
 
 function validateImage(image) {
     // check the type
-    var validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    var validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     if (validTypes.indexOf( image.type ) === -1) {
         console.error("Invalid File Type");
         return false;
