@@ -4,36 +4,16 @@
 
 [![thumbnail](https://user-images.githubusercontent.com/933826/156462219-cfbcd853-4a20-42af-8c81-6c824569efb0.png)](https://youtu.be/Ufw7gEltYu0)
 
+### Web Demo
+The [web demo](https://www.comicbooknews.tv/danger/index.html) 
+should work fine in most chrome-based browsers, however the desktop app experience is a bit nicer due to a couple of Electron apis we leverage.
+
+### The source code
 
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DanShahinConsulting/virtualset-electron/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Compiled Binaries
+Coming soon!
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Having trouble with this crazy open source thingy? [Contact Dan](https://www.danshahin.com/) and we’ll help you sort it out.
