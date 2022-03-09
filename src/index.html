@@ -52,6 +52,8 @@
                     <button class="vid-play-fg">play fg vid</button>
                     <button class="vid-pause-fg">pause fg vid</button>
                     loop: <input type="checkbox" class="vid-loop-fg"/>
+                    controls: <input type="checkbox" class="vid-controls-fg"/>
+                    muted: <input type="checkbox" class="vid-mute-fg"/>
                     <div class="controls vid">
                         <label for="vidcolor">vid Hue</label>
                         <input type="range" id="vidcolor" name="vidcolor"
@@ -1188,6 +1190,14 @@
 
             $('.vid-loop-fg').on('change',()=>{
                 __STAGE_HANDLE.toggleVideoLoop($('.vid-loop-fg').is(":checked"));
+            });
+
+            $('.vid-controls-fg').on('change',()=>{
+                __STAGE_HANDLE.toggleVideoControls($('.vid-controls-fg').is(":checked"));
+            });
+
+            $('.vid-mute-fg').on('change',()=>{
+                __STAGE_HANDLE.toggleVideoMute($('.vid-mute-fg').is(":checked"));
             });
 
             $('button.vid-toggle-bg').on('click',()=>{

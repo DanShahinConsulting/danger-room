@@ -177,6 +177,31 @@
 
                 }
 
+                window.toggleVideoMute = (val)=> {
+                    console.log('muted',val)
+                    $('video.fg').prop('muted', val);
+                    $('video.fg').load();
+
+                }
+
+                window.toggleVideoControls = (val)=> {
+                    console.log('controls',val)
+                    let $vid = $('video.fg');
+                    let $threedee = $('.threedee')
+                    $vid.prop('controls', val);
+                    if(val){
+                        $threedee.css({'pointer-events' : 'none'})
+                        $vid.css({'pointer-events' : 'all'})
+                    }else{
+                        $threedee.css({'pointer-events' : 'all'})
+                        $vid.css({'pointer-events' : 'none'})
+                        
+                    }
+                    
+                    $vid.load();
+
+                }
+
                 window.filterBG =  (filters) =>{
                     console.log(filters)
                     $('.background').css({
