@@ -43,6 +43,29 @@ div.covers{
     max-height: 720px !important;
 }
 
+video.bg{
+  /* height: 100vh; */
+  background-image: none;
+  position:absolute;
+  top:400;
+  right:200;
+  background-size: cover;
+  z-index: 4;
+  max-height: 720px !important;
+}
+
+video.fg{
+  /* height: 100vh; */
+  background-image: none;
+  position:absolute;
+  top:400;
+  right:200;
+  background-size: cover;
+  z-index: 1000;
+  max-height: 720px !important;
+  pointer-events: none;
+}
+
 div.overlay{
     /* height: 100vh; */
     pointer-events: none;
@@ -51,7 +74,7 @@ div.overlay{
     top:0;
     left:0;
     background-size: cover;
-    z-index: 6;
+    z-index: 7;
 }
 div.covers>img{
     height:100vh;

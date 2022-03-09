@@ -125,18 +125,19 @@ function fragmentShader() {
     `
 }
 
-// const stats: Stats = Stats()
-// document.body.appendChild(stats.dom)
+
 
 var data = {
+    camera : "cam",
+    microphone : "mic",
     keyColor: [0, 255, 0],
     similarity: 0.67,
     smoothness: 0.0,
-    options : "Option 1"
+    
 }
 
 const gui = new dat.GUI()
-const folder = gui.addFolder("Visualization parameters")
+const folder = gui.addFolder("Options")
 folder.addColor(data, 'keyColor').onChange(() => updateKeyColor(data.keyColor))
 folder.add(data, 'similarity', 0.0, 1.0).onChange(() => updateSimilarity(data.similarity))
 folder.add(data, 'smoothness', 0.0, 1.0).onChange(() => updateSmoothness(data.smoothness))
@@ -151,7 +152,7 @@ function updateSimilarity(v) {
 function updateSmoothness(v) {
     material.uniforms.smoothness.value = v
 }
-function updateOptions(v) {
+function updateCamOptions(v) {
     console.log(v)
     // data.deviceId = v;
     // data.options = v;
@@ -176,7 +177,6 @@ function animate() {
 
     render()
 
-    //stats.update()
 }
 
 function render() {
@@ -308,14 +308,20 @@ function getDevices() {
 function gotDevices(deviceInfos) {
     window.deviceInfos = deviceInfos; // make available to console
     console.log('Available input and output devices:', deviceInfos);
-    let options = {};
+    let camOptions = {},
+        micOptions = {};
     for (const deviceInfo of deviceInfos) {
 
         if (deviceInfo.kind === 'videoinput') {
-            options[deviceInfo.label] = deviceInfo.deviceId;
+            camOptions[deviceInfo.label] = deviceInfo.deviceId;
+        }
+
+        if (deviceInfo.kind === 'audioinput') {
+            micOptions[deviceInfo.label] = deviceInfo.deviceId;
         }
     }
-    folder.add(data, 'options', options ).onChange(updateOptions);
+    folder.add(data, 'camera', camOptions ).onChange(updateCamOptions);
+    folder.add(data, 'microphone', micOptions ).onChange(updateOptions);
 
 }
 

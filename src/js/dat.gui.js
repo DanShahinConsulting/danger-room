@@ -1931,8 +1931,8 @@ GUI.CLASS_CLOSE_TOP = 'close-top';
 GUI.CLASS_CLOSE_BOTTOM = 'close-bottom';
 GUI.CLASS_DRAG = 'drag';
 GUI.DEFAULT_WIDTH = 245;
-GUI.TEXT_CLOSED = 'Close Controls';
-GUI.TEXT_OPEN = 'Open Controls';
+GUI.TEXT_CLOSED = '-';
+GUI.TEXT_OPEN = '+';
 GUI._keydownHandler = function (e) {
   if (document.activeElement.type !== 'text' && (e.which === HIDE_KEY_CODE || e.keyCode === HIDE_KEY_CODE)) {
     GUI.toggleHide();

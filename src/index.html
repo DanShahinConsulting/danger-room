@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/controls.css">
         <link rel="stylesheet" href="css/drop.css">
         <script src="js/jquery.min.js"></script>
-        <script src="js/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="js/jquery-ui.min.js" ></script>
         <script src="js/dat.gui.js" ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,39 +46,80 @@
                 <!-- <button class="logo hidden">toggle logo</button> -->
                 <!-- <button class="logo-wobble hidden">wobble logo</button> -->
                 <!-- <button class="pip-toggle">toggle pip</button> -->
-                <button class="threedee-toggle">toggle 3d webcam</button>
-                <!-- <button class="threedee-hue-toggle">animate cam</button> -->
-                
-                <div class="controls cam">
-                    <label for="camcolor">Cam Hue</label>
-                    <input type="range" id="camcolor" name="camcolor"
-                    min="0" max="360" value="0">
+                <div>
+                    <button class="vid-toggle-fg">toggle video fg</button>
+                    <!-- <button class="vid-toggle-bg">toggle video bg</button> -->
+                    <button class="vid-play-fg">play fg vid</button>
+                    <button class="vid-pause-fg">pause fg vid</button>
+                    loop: <input type="checkbox" class="vid-loop-fg"/>
+                    <div class="controls vid">
+                        <label for="vidcolor">vid Hue</label>
+                        <input type="range" id="vidcolor" name="vidcolor"
+                        min="0" max="360" value="0">
 
-                    <label for="camblur">Cam Blur</label>
-                    <input type="range" id="camblur" name="camblur"
-                    min="0" max="100" value="0">
+                        <label for="vidblur">vid Blur</label>
+                        <input type="range" id="vidblur" name="vidblur"
+                        min="0" max="100" value="0">
 
-                    <label for="camgray">Cam Gray</label>
-                    <input type="range" id="camgray" name="camgray"
-                    min="0" max="100" value="0">
+                        <label for="vidgray">vid Gray</label>
+                        <input type="range" id="vidgray" name="vidgray"
+                        min="0" max="100" value="0">
 
-                    <label for="camopacity">Cam Opacity</label>
-                    <input type="range" id="camopacity" name="camopacity"
-                    min="0" max="100" value="100">
+                        <label for="vidopacity">vid Opacity</label>
+                        <input type="range" id="vidopacity" name="vidopacity"
+                        min="0" max="100" value="100">
 
-                    <label for="camsaturation">Cam Saturation</label>
-                    <input type="range" id="camsaturation" name="camsaturation"
-                    min="0" max="400" value="100">
+                        <label for="vidsaturation">vid Saturation</label>
+                        <input type="range" id="vidsaturation" name="vidsaturation"
+                        min="0" max="400" value="100">
 
-                    <label for="camsepia">Cam Sepia</label>
-                    <input type="range" id="camsepia" name="camsepia"
-                    min="0" max="100" value="0">
+                        <label for="vidsepia">vid Sepia</label>
+                        <input type="range" id="vidsepia" name="vidsepia"
+                        min="0" max="100" value="0">
 
-                    <label for="caminvert">Cam Invert</label>
-                    <input type="range" id="caminvert" name="caminvert"
-                    min="0" max="100" value="0">
+                        <label for="vidinvert">vid Invert</label>
+                        <input type="range" id="vidinvert" name="vidinvert"
+                        min="0" max="100" value="0">
 
-                </div>  
+                    </div>
+                </div>
+                <div>
+                    <button class="threedee-toggle">toggle 3d webcam</button>
+                    
+
+                    <!-- <button class="threedee-hue-toggle">animate cam</button> -->
+                    
+                    <div class="controls cam">
+                        <label for="camcolor">Cam Hue</label>
+                        <input type="range" id="camcolor" name="camcolor"
+                        min="0" max="360" value="0">
+
+                        <label for="camblur">Cam Blur</label>
+                        <input type="range" id="camblur" name="camblur"
+                        min="0" max="100" value="0">
+
+                        <label for="camgray">Cam Gray</label>
+                        <input type="range" id="camgray" name="camgray"
+                        min="0" max="100" value="0">
+
+                        <label for="camopacity">Cam Opacity</label>
+                        <input type="range" id="camopacity" name="camopacity"
+                        min="0" max="100" value="100">
+
+                        <label for="camsaturation">Cam Saturation</label>
+                        <input type="range" id="camsaturation" name="camsaturation"
+                        min="0" max="400" value="100">
+
+                        <label for="camsepia">Cam Sepia</label>
+                        <input type="range" id="camsepia" name="camsepia"
+                        min="0" max="100" value="0">
+
+                        <label for="caminvert">Cam Invert</label>
+                        <input type="range" id="caminvert" name="caminvert"
+                        min="0" max="100" value="0">
+
+                    </div>  
+                </div>
             </div>
 
             <div>
@@ -1133,8 +1174,24 @@
                 __STAGE_HANDLE.toggle('.background','hidden');
             });
 
-            $('button.pip-toggle').on('click',()=>{
-                __STAGE_HANDLE.toggle('.pip','hidden');
+            $('button.vid-toggle-fg').on('click',()=>{
+                __STAGE_HANDLE.toggle('video.fg','hidden');
+            });
+
+            $('button.vid-play-fg').on('click',()=>{
+                __STAGE_HANDLE.playVideo();
+            });
+
+            $('button.vid-pause-fg').on('click',()=>{
+                __STAGE_HANDLE.pauseVideo();
+            });
+
+            $('.vid-loop-fg').on('change',()=>{
+                __STAGE_HANDLE.toggleVideoLoop($('.vid-loop-fg').is(":checked"));
+            });
+
+            $('button.vid-toggle-bg').on('click',()=>{
+                __STAGE_HANDLE.toggle('video.bg','hidden');
             });
 
             $('button.threedee-toggle').on('click',()=>{
@@ -1147,6 +1204,10 @@
 
             $('#camcolor,#camblur,#camgray,#camopacity,#camsaturation,#camsepia,#caminvert').on('input',() => {
                 changeCamFilters()
+            });
+
+            $('#vidcolor,#vidblur,#vidgray,#vidopacity,#vidsaturation,#vidsepia,#vidinvert').on('input',() => {
+                changeVidFilters()
             });
             $('#bgcolor,#bgblur,#bggray,#bgopacity,#bgsaturation,#bgsepia,#bginvert').on('input',() => {
                 changebgFilters()
@@ -1210,6 +1271,20 @@
                     saturationValue : $('#camsaturation').val(),
                     sepiaValue : $('#camsepia').val(),
                     invertValue : $('#caminvert').val()
+                });
+            }
+
+            function changeVidFilters(){
+                
+
+                __STAGE_HANDLE.filterVid({
+                    rotationValue : $('#vidcolor').val(),
+                    blurValue : $('#vidblur').val(),
+                    opacityValue: $('#vidopacity').val(),
+                    grayValue : $('#vidgray').val(),
+                    saturationValue : $('#vidsaturation').val(),
+                    sepiaValue : $('#vidsepia').val(),
+                    invertValue : $('#vidinvert').val()
                 });
             }
 

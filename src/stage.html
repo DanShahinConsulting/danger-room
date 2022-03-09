@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="css/fx.css">
         <link rel="stylesheet" href="css/marquee.css">
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js" ></script>
         <script src="js/html2canvas.min.js"></script>
 
         <link rel="stylesheet" href="css/distributed_toastr.css" />
@@ -94,11 +95,11 @@
                 }
 
                 window.playVideo = function(){
-                    $('.videoInsert')[0].play();
+                    $('video.fg')[0].play();
                 }
                 window.pauseVideo = function(){
 
-                    $('.videoInsert')[0].pause();
+                    $('video.fg')[0].pause();
                 }
 
                 window.flipCover = function(imgData){
@@ -160,6 +161,20 @@
                     $('.threedee').css({
                         'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
                     });
+                }
+
+                window.filterVid =  (filters) =>{
+                    console.log(filters)
+                    $('video.fg').css({
+                        'filter' : `hue-rotate(${filters.rotationValue}deg) blur(${filters.blurValue}px) grayscale(${filters.grayValue}%) opacity(${filters.opacityValue}%) saturate(${filters.saturationValue}%) sepia(${filters.sepiaValue}%) invert(${filters.invertValue}%)`
+                    });
+                }
+
+                window.toggleVideoLoop = (val)=> {
+                    console.log('loop',val)
+                    $('video.fg').attr({loop:val})
+                    $('video.fg').load();
+
                 }
 
                 window.filterBG =  (filters) =>{
@@ -225,7 +240,14 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="main" classs="fixed">
+            
+        <div id="main" class="fixed">
+            <video class="fg fixed" width="1280" height="720" autoplay>
+                <source class="fg" src="img/video/airlock.webm" type="video/webm">
+            </video>
+            <!-- <video class="bg fixed" width="1280" height="720" autoplay loop>
+                <source src="img/video/dan.webm" type="video/webm">
+            </video> -->
             <canvas id="c"></canvas>
             <div class="fixed static hidden"></div>
             <div class="hidden marquee animate__animated"><p>
@@ -289,9 +311,15 @@
         <script src="js/webcamgl.js"></script>
         <script>
             $(document).ready(function(){
+                //
+                
+                $('video.fixed.bg').remove().appendTo('body');
+                //
                 $('div.fixed.overlay').remove().appendTo('body');
+
             })
         </script>
+        <script src="js/dropvideo.js"></script>
     </body>
     <select name="videoSource" id="videoSource"></select>
 </html>
