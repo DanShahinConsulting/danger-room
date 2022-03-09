@@ -54,6 +54,10 @@ video.bg{
   max-height: 720px !important;
 }
 
+video.touchable{
+  pointer-events: all;
+}
+
 video.fg{
   /* height: 100vh; */
   background-image: none;
