@@ -51,6 +51,7 @@
                     <!-- <button class="vid-toggle-bg">toggle video bg</button> -->
                     <button class="vid-play-fg">play fg vid</button>
                     <button class="vid-pause-fg">pause fg vid</button>
+                    autoplay: <input type="checkbox" class="vid-autoplay-fg"/>
                     loop: <input type="checkbox" class="vid-loop-fg"/>
                     controls: <input type="checkbox" class="vid-controls-fg"/>
                     muted: <input type="checkbox" class="vid-mute-fg"/>
@@ -1190,6 +1191,10 @@
 
             $('.vid-loop-fg').on('change',()=>{
                 __STAGE_HANDLE.toggleVideoLoop($('.vid-loop-fg').is(":checked"));
+            });
+
+            $('.vid-autoplay-fg').on('change',()=>{
+                __STAGE_HANDLE.toggleVideoAutoplay($('.vid-autoplay-fg').is(":checked"));
             });
 
             $('.vid-controls-fg').on('change',()=>{

@@ -170,6 +170,13 @@
                     });
                 }
 
+                window.toggleVideoAutoplay = (val)=> {
+                    console.log('autoplay',val)
+                    $('video.fg').attr({autoplay:val})
+                    $('video.fg').load();
+
+                }
+
                 window.toggleVideoLoop = (val)=> {
                     console.log('loop',val)
                     $('video.fg').attr({loop:val})
@@ -267,7 +274,7 @@
         <![endif]-->
             
         <div id="main" class="fixed">
-            <video class="fg fixed" width="1280" height="720" autoplay>
+            <video class="fg fixed" width="1280" height="720">
                 <source class="fg" src="img/video/airlock.webm" type="video/webm">
             </video>
             <!-- <video class="bg fixed" width="1280" height="720" autoplay loop>
